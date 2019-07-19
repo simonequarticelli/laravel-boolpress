@@ -11,9 +11,15 @@
 |
 */
 
-//rotta per la pagina bubblica
-Route::get('/', 'PublicController@index');
+//rotte pubbliche
+Route::prefix('guest')->namespace('Guest')->name('guest.')->group(function() {
+  Route::get('/', 'PublicController@index')->name('home');
+  Route::get('/show/{slug}', 'PublicController@show')->name('show');
+});
 
+Route::get('/', function(){
+  return redirect()->route('guest.home');
+});
 
 //gestisce tutte le rotte di autenticazione
 Auth::routes();
@@ -26,7 +32,7 @@ Auth::routes();
 // specifico che è un gruppo <= group(function{})
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
   // rotta per amministratore
-  Route::get('/', 'HomeController@index')->name('home');
+  Route::get('/', 'PostController@index')->name('home');
   // rotta che gestisce le CRUD
-  Route::resource('posts', 'PostController');
+  Route::resource('post', 'PostController');
 });

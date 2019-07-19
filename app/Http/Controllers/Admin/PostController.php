@@ -5,81 +5,80 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Post;
+
+// percorso helper per slug
+use Illuminate\Support\Str;
+
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+      $posts = Post::orderBy('id', 'desc')->get();;
+      return view('admin.home', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+      return view('admin.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+      $validateData = $request->validate([
+        'title' => 'required|max:255|bail',
+        'content' => 'required|max:500',
+        'author' => 'required|max:255'
+      ]);
+      $dati = $request->all();
+      //dd($dati);
+      $dati['slug'] = Str::slug($dati['title']);
+      $new_post = new Post();
+      $new_post->fill($dati);
+      $new_post->save();
+      // dd($new_post);
+      return redirect()->route('admin.home');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+      $post = Post::find($id);
+      return view('admin.show', compact('post'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+      $post = Post::find($id);
+      if (empty($post)) {
+        abort(404);
+      }
+      return view('admin.edit', compact('post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+      $validateData = $request->validate([
+        'title' => 'required|max:255|bail',
+        'content' => 'required|max:500',
+        'author' => 'required|max:255'
+      ]);
+      $dati = $request->all();
+      $post = Post::find($id);
+      $post->update($dati);
+      return redirect()->route('admin.home');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+      $post = Post::find($id);
+      $post->delete();
+      return redirect()->route('admin.home');
     }
 }

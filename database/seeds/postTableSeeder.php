@@ -15,7 +15,7 @@ class postTableSeeder extends Seeder
 {
 
     public function run()
-    {
+    { 
       // utilizzo della classe faker <= helper
       $faker = Faker::create('it_IT'); // <= genera in italiano
 
@@ -27,8 +27,7 @@ class postTableSeeder extends Seeder
         // uso il titolo del post come slug
         $new_post->slug = Str::slug($new_post->title);
         $new_post->save();
-
       }
-
     }
+
 }
