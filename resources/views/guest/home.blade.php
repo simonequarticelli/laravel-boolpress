@@ -6,9 +6,8 @@
     <ul class="mt-4 list-unstyled">
       @foreach ($posts as $post)
         <li>
-          <strong>Name: </strong>{{$post->author}}<br>
-          <strong>Title: </strong><a href="{{route('guest.show', $post->slug)}}">{{$post->title}}</a><br>
-          <strong>Created at: </strong>{{$post->created_at}}
+          <a href="{{route('guest.show', $post->slug)}}">{{$post->title}}</a> -
+          <em>{{$post->author}} - {{$post->created_at}}</em>
         </li>
         <br>
       @endforeach

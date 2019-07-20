@@ -4,6 +4,8 @@
   <div class="container ">
     <strong>Id: </strong>{{$post->id}}<br>
     <br>
+    <strong>Genre: </strong><br>
+    <br>
     <strong>Name: </strong>{{$post->author}}<br>
     <br>
     <strong>Title: </strong>{{$post->title}}<br>
@@ -14,6 +16,6 @@
     <br>
     <strong>Update at: </strong>{{$post->updated_at}}<br>
     <br>
-    <a class="btn btn-outline-dark"href="{{route('admin.home')}}">Back</a>
+    <a class="btn btn-dark"href="{{route('admin.home')}}">Back</a>
   </div>
 @endsection

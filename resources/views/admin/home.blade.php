@@ -8,10 +8,11 @@
       <th>Id</th>
       <th>Title</th>
       <th>Slug</th>
+      <th>Genre</th>
       <th>Content</th>
       <th>Author</th>
       <th>Created</th>
-      <th>Update</th>
+      <th>Update at</th>
       <th class="text-center">Actions</th>
     </tr>
   </thead>
@@ -21,7 +22,8 @@
         <td>{{$post->id}}</td>
         <td>{{$post->title}}</td>
         <td>{{$post->slug}}</td>
-        <td>{{$post->content}}</td>
+        <td style="min-width: 100px;">{{$post->genre ? $post->genre['name'] : 'n.a.'}}</td>
+        <td class="text-truncate" style="max-width: 200px;">{{$post->content}}</td>
         <td>{{$post->author}}</td>
         <td>{{$post->created_at}}</td>
         <td>{{$post->updated_at}}</td>

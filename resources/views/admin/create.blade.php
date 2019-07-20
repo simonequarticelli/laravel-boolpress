@@ -29,14 +29,16 @@
         <div class="input-group-prepend">
           <label class="input-group-text">Category</label>
         </div>
-        <select class="custom-select">
+
+        <select name="genre_id" class="custom-select">
           <option selected>Choose...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          @foreach ($genres as $genre)
+            <option value="{{$genre->id}}">{{$genre->name}}</option>
+          @endforeach
         </select>
+
       </div>
-      <button type="submit" class="btn btn-outline-success">Add</button>
+      <a class="btn btn-dark"href="{{route('admin.home')}}">Back</a> <button type="submit" class="btn btn-success">Add</button>
     </form>
   </div>
 @endsection

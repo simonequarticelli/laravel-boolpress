@@ -2,14 +2,13 @@
 
 @section('content')
   <div class="container mt-2">
-    <h3>{{$post->author}}</h3>
+    <h3>{{$post->title}}</h3>
+    <br>
   </div>
   <div class="container">
-    <strong>Title: </strong>{{$post->title}}<br>
+    {{$post->content}}<br>
     <br>
-    <strong>Content: </strong>{{$post->content}}<br>
-    <br>
-    <em>{{$post->created_at}}</em><br>
+    <em>{{$post->author}} - {{$post->created_at}}</em><br>
     <br>
     <a class="btn btn-outline-primary"href="{{route('guest.home')}}">Back</a>
   </div>

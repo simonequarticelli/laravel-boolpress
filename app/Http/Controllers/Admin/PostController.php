@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Post;
+use App\Genre;
 
 // percorso helper per slug
 use Illuminate\Support\Str;
@@ -14,15 +15,16 @@ class PostController extends Controller
 {
 
     public function index()
-    {
-      $posts = Post::orderBy('id', 'desc')->get();;
+    { 
+      $posts = Post::orderBy('id', 'desc')->limit(5)->get();
       return view('admin.home', compact('posts'));
     }
 
 
     public function create()
     {
-      return view('admin.create');
+      $genres = Genre::all();
+      return view('admin.create', compact('genres'));
     }
 
 
@@ -53,11 +55,16 @@ class PostController extends Controller
 
     public function edit($id)
     {
+      $genres = Genre::all();
+
       $post = Post::find($id);
       if (empty($post)) {
         abort(404);
       }
-      return view('admin.edit', compact('post'));
+      return view('admin.edit')->with([
+        'post' => $post,
+        'genres' => $genres
+      ]);
     }
 
 
@@ -66,6 +73,7 @@ class PostController extends Controller
       $validateData = $request->validate([
         'title' => 'required|max:255|bail',
         'content' => 'required|max:500',
+        'genre_id' => 'required',
         'author' => 'required|max:255'
       ]);
       $dati = $request->all();

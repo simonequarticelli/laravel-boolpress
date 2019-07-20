@@ -19,9 +19,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="@guest @else bg-secondary text-white @endguest">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md @guest navbar-light bg-white @else navbar-white bg-dark @endguest shadow-sm">
             <div class="container">
               {{-- eseguo controllo di autenticazione per scegliere rotta corretta --}}
                 <a class="navbar-brand" href="@guest{{ route('guest.home') }}@else{{ route('admin.home') }}@endguest">
