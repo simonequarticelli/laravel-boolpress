@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container ">
+  <div class="container">
     <strong>Id: </strong>{{$post->id}}<br>
     <br>
-    <strong>Genre: </strong><br>
+    <strong>Genre: </strong>{{$post->genre ? $post->genre['name'] : 'n.a.'}}<br>
     <br>
     <strong>Name: </strong>{{$post->author}}<br>
     <br>

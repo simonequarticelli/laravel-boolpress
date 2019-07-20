@@ -35,19 +35,17 @@
             </span>
         @enderror
       </div>
-
+      <br>
       <div class="input-group mb-3 w-25">
         <div class="input-group-prepend">
           <label class="input-group-text">Category</label>
         </div>
-
         <select name="genre_id" class="custom-select">
           <option selected>{{$post->genre ? $post->genre->name : 'Choose...'}}</option>
           @foreach ($genres as $genre)
             <option value="{{$genre->id}}">{{$genre->name}}</option>
           @endforeach
         </select>
-
       </div>
 
       <a class="btn btn-dark"href="{{route('admin.home')}}">Back</a> <button type="submit" class="btn btn-success">Save</button>
