@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function index()
     {
-      $posts = Post::orderBy('id', 'desc')->limit(5)->get();
+      $posts = Post::orderBy('id', 'desc')->get();
       return view('admin.home', compact('posts'));
     }
 
@@ -72,7 +72,7 @@ class PostController extends Controller
     {
       $validateData = $request->validate([
         'title' => 'required|max:255|bail',
-        'content' => 'required|max:500',
+        'content' => 'required',
         'author' => 'required|max:255'
       ]);
       $dati = $request->all();

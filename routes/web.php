@@ -15,6 +15,7 @@
 Route::prefix('guest')->namespace('Guest')->name('guest.')->group(function() {
   Route::get('/', 'PublicController@index')->name('home');
   Route::get('/show/{slug}', 'PublicController@show')->name('show');
+  Route::get('/category/{slug}', 'PublicController@show_category')->name('category');
 });
 
 Route::get('/', function(){

@@ -41,7 +41,7 @@
           <label class="input-group-text">Category</label>
         </div>
         <select name="genre_id" class="custom-select">
-          <option value="{{$post->genre->id}}" selected>{{$post->genre ? $post->genre->name : 'Choose...'}}</option>
+          <option value="{{$post->genre['id']}}" selected>{{$post->genre ? $post->genre->name : 'Choose...'}}</option>
           @foreach ($genres as $genre)
             <option value="{{$genre->id}}">{{$genre->name}}</option>
           @endforeach

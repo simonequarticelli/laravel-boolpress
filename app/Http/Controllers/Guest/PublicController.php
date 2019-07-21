@@ -6,11 +6,23 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Post;
+use App\Genre;
 
 class PublicController extends Controller
 {
+  public function show_category($slug) {
+    
+    $genre = Genre::where('slug', $slug)->first();
+    $posts = $genre->posts;
+
+    return view('guest.category')->with([
+      'genre' => $genre,
+      'posts' => $posts
+    ]);
+  }
+
   public function index() {
-    $posts = Post::all();
+    $posts = Post::orderBy('id', 'desc')->limit(5)->get();
     return view('guest.home', compact('posts'));
   }
 
