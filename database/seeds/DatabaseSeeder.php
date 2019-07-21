@@ -9,5 +9,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(postTableSeeder::class);
         $this->call(genresTableSeeder::class);
+        $this->call(tagsTableSeeder::class);
     }
 }

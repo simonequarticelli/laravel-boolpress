@@ -10,9 +10,9 @@ use App\Genre;
 
 class PublicController extends Controller
 {
-  public function show_category($slug) {
-    
-    $genre = Genre::where('slug', $slug)->first();
+  public function show_category($category_slug) {
+    //dd($category_slug);
+    $genre = Genre::where('slug', $category_slug)->first();
     $posts = $genre->posts;
 
     return view('guest.category')->with([
@@ -23,12 +23,14 @@ class PublicController extends Controller
 
   public function index() {
     $posts = Post::orderBy('id', 'desc')->limit(5)->get();
+    //dd($posts);
     return view('guest.home', compact('posts'));
   }
 
-  public function show($slug) {
+  public function show($title_slug) {
+    //dd($title_slug);
     // uso where per selezionare la colonna e first per prendere il primo
-    $post = Post::where('slug', $slug)->first();
+    $post = Post::where('slug', $title_slug)->first();
 
     return view('guest.show', compact('post'));
   }

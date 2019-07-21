@@ -7,7 +7,9 @@
       @foreach ($posts as $post)
         <li>
           <a href="{{route('guest.show', $post->slug)}}">{{$post->title}}</a> -
-          <em>{{$post->author}} - {{$post->created_at}}</em>
+          <em>{{$post->author}} - @foreach ($post->tags as $tag)
+              <em class="text-danger text-uppercase">{{$tag->name}}@if(!$loop->last),@endif</em>
+          @endforeach{{$post->created_at}}</em>
         </li>
         <br>
       @endforeach

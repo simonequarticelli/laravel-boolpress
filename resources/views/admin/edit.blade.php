@@ -48,6 +48,15 @@
         </select>
       </div>
 
+      @foreach ($tags as $tag)
+        <div class="form-check form-check-inline">
+          <label class="form-check-label"></label>
+          <input class="form-check-input" type="checkbox" name="tag[]" value="{{$tag->id}}">{{$tag->name}}
+        </div>
+      @endforeach
+      <br>
+      <br>
+
       <a class="btn btn-dark"href="{{route('admin.home')}}">Back</a> <button type="submit" class="btn btn-success">Save</button>
     </form>
   </div>

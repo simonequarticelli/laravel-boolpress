@@ -14,8 +14,8 @@
 //rotte pubbliche
 Route::prefix('guest')->namespace('Guest')->name('guest.')->group(function() {
   Route::get('/', 'PublicController@index')->name('home');
-  Route::get('/show/{slug}', 'PublicController@show')->name('show');
-  Route::get('/category/{slug}', 'PublicController@show_category')->name('category');
+  Route::get('/show/{title_slug}', 'PublicController@show')->name('show');
+  Route::get('/category/{category_slug}', 'PublicController@show_category')->name('category');
 });
 
 Route::get('/', function(){
@@ -24,7 +24,6 @@ Route::get('/', function(){
 
 //gestisce tutte le rotte di autenticazione
 Auth::routes();
-
 
 // tutte le rotte hanno bisogno del login <= middleware('auth')
 // imposto il prefisso del gruppo <= prefix()

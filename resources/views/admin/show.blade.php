@@ -12,6 +12,16 @@
     <br>
     <strong>Content: </strong>{{$post->content}}<br>
     <br>
+    <strong>Tag: </strong>
+    @if (($post->tags)->isNotEmpty())
+    @foreach ($post->tags as $tag)
+      {{$tag->name}}@if(!$loop->last),@endif
+    @endforeach
+    @else
+      n.a.
+    @endif
+    <br>
+    <br>
     <strong>Created at: </strong>{{$post->created_at}}<br>
     <br>
     <strong>Update at: </strong>{{$post->updated_at}}<br>
