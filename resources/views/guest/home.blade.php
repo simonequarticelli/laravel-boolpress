@@ -12,7 +12,11 @@
           <a href="{{route('guest.show', $post->slug)}}">{{$post->title}}</a> - <em>{{$post->author}}
           {{$post->genre ? ' - ' : ''}}
           <strong>
-            {{-- <a href="{{route('guest.category', $post->genre['slug'])}}"> --}}
+            {{-- <pre>{{ dd(route('guest.category', $post->genre['slug'])) }}</pre> --}}
+            {{-- @php
+              dd($post->genre['slug']);
+            @endphp --}}
+            <a href="{{route('guest.category', strlen($post->genre['slug']) > 0 ? $post->genre['slug'] : '') }}">
             {{$post->genre ? $post->genre['name'] : ''}}</a></strong> -
             @foreach ($post->tags as $tag)
                 <em class="text-danger text-uppercase">{{$tag->name}}@if(!$loop->last),@endif</em>

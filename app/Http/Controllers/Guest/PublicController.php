@@ -11,7 +11,7 @@ use App\Genre;
 class PublicController extends Controller
 {
   public function show_category($category_slug) {
-    //dd($category_slug);
+    // dd($category_slug);
     $genre = Genre::where('slug', $category_slug)->first();
     $posts = $genre->posts;
 

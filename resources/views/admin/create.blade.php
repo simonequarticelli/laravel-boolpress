@@ -50,7 +50,7 @@
         @foreach ($tags as $tag)
           <div class="form-check form-check-inline">
             <label class="form-check-label"></label>
-            <input class="form-check-input" type="checkbox" name="tag[]" value="{{$tag->id}}">{{$tag->name}}
+            <input class="form-check-input" type="checkbox" name="tag[]" value="{{$tag->id}}" {{ in_array($tag->id, old('tag', array())) ? 'checked' : ''}} >{{$tag->name}}
           </div>
         @endforeach
 
